@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import { useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
