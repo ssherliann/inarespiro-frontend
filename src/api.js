@@ -4,7 +4,7 @@ axios.interceptors.request.use(
   function (config) {
     const { origin } = new URL(config.url);
 
-    const allowedOrigins = [process.env.REACT_APP_BASE_ENDPOINT];
+    const allowedOrigins = ['https://inarespiro.onrender.com'];
     const token = localStorage.getItem("access-token");
 
     if (allowedOrigins.includes(origin)) {
