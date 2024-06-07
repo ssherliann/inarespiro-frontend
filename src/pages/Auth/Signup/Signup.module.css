@@ -1,0 +1,14 @@
+.signinLink {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.signinLink:hover {
+    color: #616161;
+    text-decoration: underline;
+}
+
+.signUpForm {
+    margin-bottom: 20px;
+}

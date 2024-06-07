@@ -1,0 +1,40 @@
+.adminProductsPage {
+    padding-top: 20px;
+}
+
+.backLink {
+    padding-left: 50px;
+    font-size: 20px;
+}
+
+.backLink:hover {
+    text-decoration: underline;
+}
+
+.title {
+    font-weight: 600;
+    font-size: 40px;
+    margin-bottom: 20px;
+    margin-left: 150px;
+}
+
+.editButton {
+    background-color: #299CE5;
+    margin-right: 20px;
+}
+
+.editButton:hover {
+    background-color: #2383BF;
+}
+
+.deleteButton {
+    background-color: #FF2929;
+}
+
+.deleteButton:hover {
+    background-color: #C41C1C;
+}
+
+.productsTable {
+    margin-left: 10px;
+}

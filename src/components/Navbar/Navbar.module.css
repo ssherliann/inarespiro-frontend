@@ -1,0 +1,52 @@
+.nav {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 350;
+  padding: 20px 150px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: solid 1px #000;
+  background-color: #000;
+  line-height: 2px;
+  align-items: center;
+}
+
+.menu {
+  display: flex;
+  margin-left: 550px;
+}
+
+.logo {
+  color: #fff;
+  font-family: "Josefin Slab", serif;
+  text-decoration: none;
+  font-size: 38px;
+  font-weight: 300;
+}
+
+.nav .left .menu li a {
+  color: #fff;
+  text-decoration: none;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 22px;
+}
+
+.nav .left .menu li a:hover {
+  text-decoration: underline;
+}
+
+.iconCart, .iconProfile {
+  color: #fff;
+  font-size: 30px;
+}
+
+.right {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.buttonLogin {
+  color: #000;
+  background-color: #fff;
+  font-family: "Josefin Sans", sans-serif;
+}

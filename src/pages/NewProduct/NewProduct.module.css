@@ -1,0 +1,16 @@
+.newProductPage {
+    padding-top: 20px;
+}
+
+.newProductTable {
+    margin: 20px;
+}
+
+.backLink {
+    padding-left: 50px;
+    font-size: 20px;
+}
+
+.backLink:hover {
+    text-decoration: underline;
+}

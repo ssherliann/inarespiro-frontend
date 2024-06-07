@@ -1,0 +1,10 @@
+.signupLink {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.signupLink:hover {
+    color: #616161;
+    text-decoration: underline;
+}

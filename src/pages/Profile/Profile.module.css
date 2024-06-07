@@ -1,0 +1,25 @@
+.profile {
+    padding: 50px 150px;
+}
+
+.title {
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+}
+
+.email {
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+.buttonLogOut {
+    background-color: #C1C1C1;
+    margin-top: 160px;
+    width: 100px;
+}
+
+.buttonLogOut:hover {
+    background-color: #A9A9A9;
+}
