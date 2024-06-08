@@ -4,7 +4,7 @@ axios.interceptors.request.use(
   function (config) {
     const { origin } = new URL(config.url);
 
-    const allowedOrigins = ['https://inarespiro.onrender.com'];
+    const allowedOrigins = ['*'];
     const token = localStorage.getItem("access-token");
 
     if (allowedOrigins.includes(origin)) {
@@ -87,7 +87,6 @@ export const fetchUserId = async () => {
   return id;
 };
 
-
 const getToken = () => {
   return localStorage.getItem('access-token');
 };
@@ -109,7 +108,7 @@ export const postOrder = async (input) => {
 
   try {
     const { data } = await axios.post(
-      'https://inarespiro-backend.onrender.com/order',
+      `${process.env.REACT_APP_BASE_ENDPOINT}/order`,
       input,
       {
         headers: {
