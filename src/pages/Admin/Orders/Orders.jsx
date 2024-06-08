@@ -35,14 +35,14 @@ export default function Orders() {
             </Tr>
           </Thead>
           <Tbody>
-            {data.map((item) => (
+            {data && data.map((item) => ( // Add a conditional check for data
               <Tr key={item._id}>
                 {item.user === null ? (
                   <Td>No Name</Td>
                 ) : (
                   <Td>{item.user.email}</Td>
                 )}
-                <Td>{item.adress}</Td>
+                <Td>{item.address}</Td> {/* Fixed typo in item.address */}
                 <Td isNumeric>{item.items.length}</Td>
               </Tr>
             ))}
@@ -50,6 +50,6 @@ export default function Orders() {
         </Table>
       </div>
     </div>
-  );
+  );  
 }
 
