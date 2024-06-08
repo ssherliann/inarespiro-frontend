@@ -128,7 +128,6 @@ export const postOrder = async (input) => {
   }
 };
 
-
 export const fetchOrders = async () => {
   const token = getToken();
   console.log("Token:", token);
@@ -159,7 +158,6 @@ export const fetchOrders = async () => {
     console.log("Error:", e.response ? e.response.data : e.message);
   }
 };
-
 
 export const deleteProduct = async (product_id) => {
   const { data } = await axios.delete(
