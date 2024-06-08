@@ -92,22 +92,36 @@ const getToken = () => {
 };
 
 export const postOrder = async (input) => {
-  const token = getToken(); 
+  const token = getToken();
+  console.log("Token:", token); // Check if the token is correctly retrieved
+  console.log("Endpoint:", process.env.REACT_APP_BASE_ENDPOINT); // Check if the endpoint is correct
+  
   try {
     const { data } = await axios.post(
       `${process.env.REACT_APP_BASE_ENDPOINT}/order`, 
       input,
       {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`, // Ensure the 'Bearer' prefix is used
         },
       }
     );
     return data;
   } catch (e) {
-    console.log(e.response ? e.response.data : e.message);
+    if (e.response) {
+      // The request was made and the server responded with a status code
+      // that falls out of the range of 2xx
+      console.error("Server responded with an error:", e.response.data);
+    } else if (e.request) {
+      // The request was made but no response was received
+      console.error("No response received:", e.request);
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      console.error("Error setting up the request:", e.message);
+    }
   }
 };
+
 
 export const fetchOrders = async () => {
   const token = getToken(); 
