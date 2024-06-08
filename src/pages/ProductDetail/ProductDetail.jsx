@@ -72,7 +72,7 @@ function ProductDetail() {
             {items.some(item => item._id === product_id) ? 'Remove from cart' : 'Add to cart'}
           </button>
         ) : (
-          <p>Please log in to add items to your cart.</p>
+          <p className={styles.notLoggenIn}>Please log in to add items to your cart.</p>
         )}
       </div>
     </div>

@@ -9,14 +9,6 @@ export default function AdminHome() {
         Welcome to Admin Panel
       </h1>
       <div className={styles.adminOption}>
-        <p>See orders</p>
-        <Link to="/admin/orders">
-          <Button>
-            Orders
-          </Button>
-        </Link>
-      </div>
-      <div className={styles.adminOption}>
         <p>Edit or delete your products</p>
         <Link to="/admin/products">
           <Button>

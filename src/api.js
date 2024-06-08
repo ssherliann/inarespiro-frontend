@@ -8,7 +8,9 @@ axios.interceptors.request.use(
     const token = localStorage.getItem("access-token");
 
     if (allowedOrigins.includes(origin)) {
-      config.headers.authorization = token;
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
     }
     return config;
   },
@@ -83,21 +85,6 @@ export const fetchUserId = async () => {
   );
   let id = data._id;
   return id;
-};
-
-export const postOrder = async (input) => {
-  const { data } = await axios.post(
-    `${process.env.REACT_APP_BASE_ENDPOINT}/order`,
-    input
-  );
-  return data;
-};
-
-export const fetchOrders = async () => {
-  const { data } = await axios.get(
-    `${process.env.REACT_APP_BASE_ENDPOINT}/order`
-  );
-  return data;
 };
 
 export const deleteProduct = async (product_id) => {

@@ -1,31 +1,10 @@
-import { useRef, useState } from "react";
-import { FormControl, FormLabel, Modal,  ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalOverlay, Textarea,useDisclosure } from "@chakra-ui/react";
 import { IoIosCloseCircle } from "react-icons/io";
-import { Button } from "antd";
 import { useBasket } from "../../contexts/BasketContext.jsx";
-import { postOrder } from "../../api.js";
 import styles from './Basket.module.css'
 
 function Basket() {
-  const [address, setAddress] = useState();
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const initialRef = useRef(null);
-
-  const { items, removeFromBasket, emptyBasket } = useBasket();
+  const { items, removeFromBasket } = useBasket();
   const total = items.reduce((acc, obj) => acc + obj.price, 0);
-
-  const handleSubmitForm = async () => {
-    const itemIds = items.map((item) => item._id);
-    const input = {
-      address,
-      items: JSON.stringify(itemIds),
-    };
-
-    await postOrder(input);
-
-    emptyBasket();
-    onClose();
-  };
 
   return (
     <div className={styles.shoppingCart}>
@@ -72,30 +51,6 @@ function Basket() {
                   <p className={styles.totalAmountText}>Total: {total}$</p>
                 </div>
               </div>
-              <button className={styles.buyButton} onClick={onOpen}>Buy</button>
-              <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
-              <ModalOverlay />
-              <ModalContent>
-                <ModalCloseButton />
-                <ModalBody pb={6}>
-                  <FormControl>
-                    <FormLabel>Adress</FormLabel>
-                    <Textarea
-                      ref={initialRef}
-                      placeholder="Adress"
-                      value={address}
-                      onChange={(e) => setAddress(e.target.value)}
-                    />
-                  </FormControl>
-                </ModalBody>
-                <ModalFooter>
-                  <Button onClick={handleSubmitForm}>
-                    Save
-                  </Button>
-                  <Button onClick={onClose}>Cancel</Button>
-                </ModalFooter>
-              </ModalContent>
-            </Modal>
           </div>
         </div>
       )}
