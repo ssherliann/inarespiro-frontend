@@ -99,15 +99,14 @@ export const postOrder = async (input) => {
       input,
       {
         headers: {
-          Authorization: `${token}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );
     return data;
   } catch (e) {
-    console.log(e);
+    console.log(e.response ? e.response.data : e.message);
   }
-
 };
 
 export const fetchOrders = async () => {
@@ -117,15 +116,14 @@ export const fetchOrders = async () => {
       `${process.env.REACT_APP_BASE_ENDPOINT}/order`,
       {
         headers: {
-          Authorization: `${token}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );
     return data;
   } catch (e) {
-    console.log(e);
+    console.log(e.response ? e.response.data : e.message);
   }
-
 };
 
 export const deleteProduct = async (product_id) => {

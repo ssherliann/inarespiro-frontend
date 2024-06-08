@@ -95,7 +95,7 @@ function Basket() {
                   <Button onClick={onClose}>Cancel</Button>
                 </ModalFooter>
               </ModalContent>
-            </Modal>
+              </Modal>
           </div>
         </div>
       )}
