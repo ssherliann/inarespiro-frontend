@@ -109,7 +109,7 @@ export const postOrder = async (input) => {
 
   try {
     const { data } = await axios.post(
-      `${process.env.REACT_APP_BASE_ENDPOINT}/order`,
+      'https://inarespiro-backend.onrender.com/order',
       input,
       {
         headers: {
@@ -120,15 +120,7 @@ export const postOrder = async (input) => {
     );
     return data;
   } catch (e) {
-    if (e.response) {
-      console.error("Server responded with an error:", e.response.data);
-      console.error("Status code:", e.response.status);
-      console.error("Headers:", e.response.headers);
-    } else if (e.request) {
-      console.error("No response received:", e.request);
-    } else {
-      console.error("Error setting up the request:", e.message);
-    }
+    console.log(e)
   }
 };
 
