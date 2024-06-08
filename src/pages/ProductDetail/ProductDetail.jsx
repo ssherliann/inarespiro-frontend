@@ -4,12 +4,14 @@ import { useParams, Link } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { fetchProduct } from '../../api';
 import { useBasket } from '../../contexts/BasketContext';
+import { useAuth } from '../../contexts/AuthContext';
 import { IoArrowBackOutline } from "react-icons/io5";
 import styles from './ProductDetail.module.css';
 
 function ProductDetail() {
   const { product_id } = useParams();
   const { addToBasket, items } = useBasket();
+  const { loggedIn } = useAuth();
   const refs = useRef([]);
 
   const { isLoading, isError, data } = useQuery(['product', product_id], () =>
@@ -62,12 +64,16 @@ function ProductDetail() {
         <p className={styles.productInfoTitle}>{data.title}</p>
         <p className={styles.productInfoPrice}>{data.price}$</p>
         <p className={styles.productInfoDescription}>{data.description}</p>
-        <button
-          onClick={handleAddToBasket}
-          className={`${styles.productInfoBuyButton} ${items.some(item => item._id === product_id) ? styles.remove : ''}`}
-        >
-          {items.some(item => item._id === product_id) ? 'Remove from cart' : 'Add to cart'}
-        </button>
+        {loggedIn ? (
+          <button
+            onClick={handleAddToBasket}
+            className={`${styles.productInfoBuyButton} ${items.some(item => item._id === product_id) ? styles.remove : ''}`}
+          >
+            {items.some(item => item._id === product_id) ? 'Remove from cart' : 'Add to cart'}
+          </button>
+        ) : (
+          <p>Please log in to add items to your cart.</p>
+        )}
       </div>
     </div>
   );
