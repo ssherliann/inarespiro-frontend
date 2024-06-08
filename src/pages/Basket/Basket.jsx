@@ -1,10 +1,10 @@
+import { useRef, useState } from "react";
 import { IoIosCloseCircle } from "react-icons/io";
 import { useBasket } from "../../contexts/BasketContext.jsx";
-import styles from './Basket.module.css'
-import { FormControl, FormLabel, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalOverlay, Textarea, useDisclosure } from "@chakra-ui/react";
-import { useRef, useState } from "react";
+import { FormControl, FormLabel, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalOverlay, Textarea, useDisclosure } from "@chakra-ui/react";
 import { postOrder } from "../../api.js";
-import { Button, Modal } from "antd";
+import { Button } from "antd";
+import styles from './Basket.module.css'
 
 function Basket() {
   const { items, removeFromBasket, emptyBasket } = useBasket();

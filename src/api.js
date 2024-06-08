@@ -93,16 +93,21 @@ const getToken = () => {
 
 export const postOrder = async (input) => {
   const token = getToken(); 
-  const { data } = await axios.post(
-    `${process.env.REACT_APP_BASE_ENDPOINT}/order`, 
-    input,
-    {
-      headers: {
-        Authorization: `${token}`,
-      },
-    }
-  );
-  return data;
+  try {
+    const { data } = await axios.post(
+      `${process.env.REACT_APP_BASE_ENDPOINT}/order`, 
+      input,
+      {
+        headers: {
+          Authorization: `${token}`,
+        },
+      }
+    );
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
+
 };
 
 export const fetchOrders = async () => {
