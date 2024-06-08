@@ -8,7 +8,7 @@ import styles from './Basket.module.css'
 
 function Basket() {
   const { items, removeFromBasket, emptyBasket } = useBasket();
-  const [address, setAddress] = useState('');  // Initialize address state
+  const [address, setAddress] = useState(''); 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = useRef(null);
 
@@ -17,15 +17,19 @@ function Basket() {
   const handleSubmitForm = async () => {
     const itemIds = items.map((item) => item._id);
     const input = {
-      address,  // Ensure address is included
+      address,
       items: JSON.stringify(itemIds),
     };
-
-    await postOrder(input);
-
-    emptyBasket();
-    onClose();
+  
+    try {
+      await postOrder(input);
+      emptyBasket();
+      onClose();
+    } catch (error) {
+      console.error("Failed to submit order:", error);
+    }
   };
+  
 
   return (
     <div className={styles.shoppingCart}>

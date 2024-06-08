@@ -89,28 +89,30 @@ export const fetchUserId = async () => {
 
 const getToken = () => {
   const token = localStorage.getItem('access-token');
+  if (!token) {
+    console.error("Token is missing");
+    return null;
+  }
   console.log("Retrieved Token:", token);
   return token;
 };
 
 export const postOrder = async (input) => {
   const token = getToken();
-  console.log("Token:", token);
-  console.log("Endpoint:", process.env.REACT_APP_BASE_ENDPOINT);
-
   if (!token) {
-    console.error("Token is missing");
+    console.error("Token is missing or invalid");
     return;
   }
 
-  if (!process.env.REACT_APP_BASE_ENDPOINT) {
+  const endpoint = process.env.REACT_APP_BASE_ENDPOINT;
+  if (!endpoint) {
     console.error("Base endpoint is missing");
     return;
   }
 
   try {
     const { data } = await axios.post(
-      `${process.env.REACT_APP_BASE_ENDPOINT}/order`,
+      `${endpoint}/order`,
       input,
       {
         headers: {
@@ -122,9 +124,10 @@ export const postOrder = async (input) => {
     console.log("Response Data:", data);
     return data;
   } catch (e) {
-    console.log("Error:", e.response ? e.response.data : e.message);
+    console.error("Error:", e.response ? e.response.data : e.message);
   }
 };
+
 
 export const fetchOrders = async () => {
   const token = getToken();
