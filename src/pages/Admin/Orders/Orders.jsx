@@ -15,11 +15,7 @@ export default function Orders() {
   if (isError) {
     return <div>Error {error.message}</div>;
   }
-  console.log('isLoading:', isLoading);
-  console.log('isError:', isError);
-  console.log('data:', data);
   console.log('error:', error);
-
   return (
     <div className={styles.ordersPage}>
       <nav>

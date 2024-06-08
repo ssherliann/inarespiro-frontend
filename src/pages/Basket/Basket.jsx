@@ -9,12 +9,22 @@ import styles from './Basket.module.css'
 function Basket() {
   const { items, removeFromBasket, emptyBasket } = useBasket();
   const [address, setAddress] = useState(''); 
+  const [Submitting, setSubmitting] = useState(''); 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = useRef(null);
 
   const total = items.reduce((acc, obj) => acc + obj.price, 0);
 
   const handleSubmitForm = async () => {
+    // Validate address
+    if (!address.trim()) {
+      console.error("Address is required");
+      return;
+    }
+  
+    // Disable button during submission
+    setSubmitting(true);
+  
     const itemIds = items.map((item) => item._id);
     const input = {
       address,
@@ -25,10 +35,17 @@ function Basket() {
       await postOrder(input);
       emptyBasket();
       onClose();
+      // Reset address field and enable button after successful submission
+      setAddress('');
+      setSubmitting(false);
+      // Provide feedback to the user (optional)
+      // You can show a toast or a message indicating successful submission
     } catch (error) {
       console.error("Failed to submit order:", error);
+      setSubmitting(false); // Enable button on error
     }
   };
+  
   
 
   return (
