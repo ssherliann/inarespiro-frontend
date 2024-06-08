@@ -87,22 +87,34 @@ export const fetchUserId = async () => {
   return id;
 };
 
+
 const getToken = () => {
-  return localStorage.getItem('access-token'); 
+  return localStorage.getItem('access-token');
 };
 
 export const postOrder = async (input) => {
   const token = getToken();
-  console.log("Token:", token); // Check if the token is correctly retrieved
-  console.log("Endpoint:", process.env.REACT_APP_BASE_ENDPOINT); // Check if the endpoint is correct
-  
+  console.log("Token:", token);
+  console.log("Endpoint:", process.env.REACT_APP_BASE_ENDPOINT);
+
+  if (!token) {
+    console.error("Token is missing");
+    return;
+  }
+
+  if (!process.env.REACT_APP_BASE_ENDPOINT) {
+    console.error("Base endpoint is missing");
+    return;
+  }
+
   try {
     const { data } = await axios.post(
-      `${process.env.REACT_APP_BASE_ENDPOINT}/order`, 
+      `${process.env.REACT_APP_BASE_ENDPOINT}/order`,
       input,
       {
         headers: {
-          Authorization: `Bearer ${token}`, 
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json' // Ensure the content type is set
         },
       }
     );
@@ -110,6 +122,8 @@ export const postOrder = async (input) => {
   } catch (e) {
     if (e.response) {
       console.error("Server responded with an error:", e.response.data);
+      console.error("Status code:", e.response.status);
+      console.error("Headers:", e.response.headers);
     } else if (e.request) {
       console.error("No response received:", e.request);
     } else {
