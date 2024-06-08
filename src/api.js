@@ -87,36 +87,36 @@ export const fetchUserId = async () => {
   return id;
 };
 
-const getToken = () => localStorage.getItem('access-token');
+const getToken = () => {
+  return localStorage.getItem('access-token'); // или sessionStorage.getItem('token')
+};
 
 export const postOrder = async (input) => {
-  const token = getToken();
+  const token = getToken(); // Получаем токен из хранилища
   const { data } = await axios.post(
-    `${process.env.REACT_APP_BASE_ENDPOINT}/order`,
+    `${process.env.REACT_APP_BASE_ENDPOINT}/order`, 
     input,
     {
       headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      }
+        Authorization: `Bearer ${token}`,
+      },
     }
   );
   return data;
 };
 
 export const fetchOrders = async () => {
-  const token = getToken();
+  const token = getToken(); 
   const { data } = await axios.get(
     `${process.env.REACT_APP_BASE_ENDPOINT}/order`,
     {
       headers: {
-        'Authorization': `Bearer ${token}`
-      }
+        Authorization: `${token}`,
+      },
     }
   );
   return data;
 };
-
 
 export const deleteProduct = async (product_id) => {
   const { data } = await axios.delete(
