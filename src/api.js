@@ -88,7 +88,9 @@ export const fetchUserId = async () => {
 };
 
 const getToken = () => {
-  return localStorage.getItem('access-token');
+  const token = localStorage.getItem('access-token');
+  console.log("Retrieved Token:", token);
+  return token;
 };
 
 export const postOrder = async (input) => {
@@ -113,19 +115,32 @@ export const postOrder = async (input) => {
       {
         headers: {
           Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json' // Ensure the content type is set
+          'Content-Type': 'application/json'
         },
       }
     );
+    console.log("Response Data:", data);
     return data;
   } catch (e) {
-    console.log(e)
+    console.log("Error:", e.response ? e.response.data : e.message);
   }
 };
 
-
 export const fetchOrders = async () => {
-  const token = getToken(); 
+  const token = getToken();
+  console.log("Token:", token);
+  console.log("Endpoint:", process.env.REACT_APP_BASE_ENDPOINT);
+
+  if (!token) {
+    console.error("Token is missing");
+    return;
+  }
+
+  if (!process.env.REACT_APP_BASE_ENDPOINT) {
+    console.error("Base endpoint is missing");
+    return;
+  }
+
   try {
     const { data } = await axios.get(
       `${process.env.REACT_APP_BASE_ENDPOINT}/order`,
@@ -135,11 +150,13 @@ export const fetchOrders = async () => {
         },
       }
     );
+    console.log("Response Data:", data);
     return data;
   } catch (e) {
-    console.log(e.response ? e.response.data : e.message);
+    console.log("Error:", e.response ? e.response.data : e.message);
   }
 };
+
 
 export const deleteProduct = async (product_id) => {
   const { data } = await axios.delete(
