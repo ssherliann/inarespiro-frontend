@@ -9,6 +9,7 @@ import Basket from "./pages/Basket/Basket";
 import Error404 from "./pages/Error404/Error404";
 import ProductedProfile from "./pages/ProductedRoute/ProductedProfile";
 import ProductedAdmin from "./pages/ProductedRoute/ProductedAdmin";
+import Orders from "./pages/Admin/Orders/Orders";
 import AdminProducts from "./pages/Admin/AdminProducts/AdminProducts";
 import AdminProductDetail from "./pages/Admin/AdminProductDetail/AdminProductDetail";
 import NewProduct from "./pages/NewProduct/NewProduct";
@@ -30,6 +31,7 @@ function App() {
           <Route path="/profile" element={<ProductedProfile />} />
           <Route path="/admin">
             <Route index element={<ProductedAdmin />} />
+            <Route path="orders" element={<Orders />} />
             <Route path="products">
               <Route index element={<AdminProducts />} />
               <Route path=":product_id" element={<AdminProductDetail />} />
