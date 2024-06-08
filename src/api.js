@@ -98,7 +98,7 @@ export const postOrder = async (input) => {
     input,
     {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `${token}`,
       },
     }
   );
