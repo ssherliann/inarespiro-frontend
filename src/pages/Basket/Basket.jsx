@@ -29,7 +29,6 @@ function Basket() {
       console.error("Failed to submit order:", error);
     }
   };
-  
 
   return (
     <div className={styles.shoppingCart}>
@@ -83,7 +82,7 @@ function Basket() {
                 <ModalCloseButton />
                 <ModalBody pb={6}>
                   <FormControl>
-                    <FormLabel>Address</FormLabel>  
+                    <FormLabel>PLease, enter your address!</FormLabel>  
                     <Textarea
                       ref={initialRef}
                       placeholder="Address"  
@@ -92,7 +91,7 @@ function Basket() {
                     />
                   </FormControl>
                 </ModalBody>
-                <ModalFooter>
+                <ModalFooter className={styles.modalFooter}>
                   <Button onClick={handleSubmitForm}>
                     Save
                   </Button>

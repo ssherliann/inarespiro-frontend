@@ -112,3 +112,8 @@
 .buyButton:hover {
     background-color: #9E9E9E;
 }
+
+.modalFooter {
+    display: flex;
+    gap: 10px;
+}

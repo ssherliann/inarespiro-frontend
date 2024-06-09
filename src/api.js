@@ -97,22 +97,25 @@ const getToken = () => {
   return token;
 };
 
+
 export const postOrder = async (input) => {
   const token = getToken();
+  console.log("Token:", token);
+  console.log("Endpoint:", process.env.REACT_APP_BASE_ENDPOINT);
+
   if (!token) {
-    console.error("Token is missing or invalid");
+    console.error("Token is missing");
     return;
   }
 
-  const endpoint = process.env.REACT_APP_BASE_ENDPOINT;
-  if (!endpoint) {
+  if (!process.env.REACT_APP_BASE_ENDPOINT) {
     console.error("Base endpoint is missing");
     return;
   }
 
   try {
     const { data } = await axios.post(
-      `${endpoint}/order`,
+      `${process.env.REACT_APP_BASE_ENDPOINT}/order`,
       input,
       {
         headers: {
@@ -124,7 +127,7 @@ export const postOrder = async (input) => {
     console.log("Response Data:", data);
     return data;
   } catch (e) {
-    console.error("Error:", e.response ? e.response.data : e.message);
+    console.log("Error:", e.response ? e.response.data : e.message);
   }
 };
 
@@ -158,6 +161,7 @@ export const fetchOrders = async () => {
     console.log("Error:", e.response ? e.response.data : e.message);
   }
 };
+
 
 export const deleteProduct = async (product_id) => {
   const { data } = await axios.delete(
