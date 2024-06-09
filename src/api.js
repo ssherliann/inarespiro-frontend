@@ -19,6 +19,16 @@ axios.interceptors.request.use(
   }
 );
 
+const getToken = () => {
+  const token = localStorage.getItem('access-token');
+  if (!token) {
+    console.error("Token is missing");
+    return null;
+  }
+  console.log("Retrieved Token:", token);
+  return token;
+};
+
 export const fetchProductList = async ({ pageParam = 1 }) => {
   const { data } = await axios.get(
     `${process.env.REACT_APP_BASE_ENDPOINT}/product?page=${pageParam}`
@@ -36,9 +46,16 @@ export const fetchProduct = async (id) => {
 };
 
 export const postProduct = async (input) => {
+  const token = getToken();
+
   const { data } = await axios.post(
     `${process.env.REACT_APP_BASE_ENDPOINT}/product/`,
-    input
+    input,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
   );
 
   return data;
@@ -86,17 +103,6 @@ export const fetchUserId = async () => {
   let id = data._id;
   return id;
 };
-
-const getToken = () => {
-  const token = localStorage.getItem('access-token');
-  if (!token) {
-    console.error("Token is missing");
-    return null;
-  }
-  console.log("Retrieved Token:", token);
-  return token;
-};
-
 
 export const postOrder = async (input) => {
   const token = getToken();
