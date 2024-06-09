@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { IoIosCloseCircle } from "react-icons/io";
 import { useBasket } from "../../contexts/BasketContext.jsx";
-import { FormControl, FormLabel, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalOverlay, Textarea, useDisclosure } from "@chakra-ui/react";
+import { FormControl, FormLabel, Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay, Textarea, useDisclosure } from "@chakra-ui/react";
 import { postOrder } from "../../api.js";
 import { Button } from "antd";
 import styles from './Basket.module.css'
@@ -79,7 +79,6 @@ function Basket() {
             <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
               <ModalOverlay />
               <ModalContent>
-                <ModalCloseButton />
                 <ModalBody pb={6}>
                   <FormControl>
                     <FormLabel>PLease, enter your address!</FormLabel>  
@@ -92,10 +91,10 @@ function Basket() {
                   </FormControl>
                 </ModalBody>
                 <ModalFooter className={styles.modalFooter}>
-                  <Button onClick={handleSubmitForm}>
+                  <Button onClick={handleSubmitForm} className={styles.saveButton}>
                     Save
                   </Button>
-                  <Button onClick={onClose}>Cancel</Button>
+                  <Button onClick={onClose} className={styles.cancelButton}>Cancel</Button>
                 </ModalFooter>
               </ModalContent>
             </Modal>

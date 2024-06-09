@@ -117,3 +117,11 @@
     display: flex;
     gap: 10px;
 }
+
+.saveButton:hover {
+    border: #008311;
+}
+
+.cancelButton:hover {
+    border: #ff2020;
+}
