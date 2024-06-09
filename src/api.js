@@ -49,7 +49,7 @@ export const postProduct = async (input) => {
   const token = getToken();
 
   const { data } = await axios.post(
-    `${process.env.REACT_APP_BASE_ENDPOINT}/product/`,
+    `${process.env.REACT_APP_BASE_ENDPOINT}/product`,
     input,
     {
       headers: {
