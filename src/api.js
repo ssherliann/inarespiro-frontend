@@ -117,6 +117,7 @@ export const postOrder = async (input) => {
       input,
       {
         headers: {
+          "Access-Control-Allow-Origin":"https://inarespiro.onrender.com",
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
         },
