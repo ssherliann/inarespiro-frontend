@@ -12,9 +12,9 @@ import {
   Textarea,
   Input,
   useDisclosure,
-  message
 } from "@chakra-ui/react";
 import { postOrder } from "../../api.js";
+import toast from 'react-hot-toast';
 import styles from './Basket.module.css';
 
 function Basket() {
@@ -38,7 +38,7 @@ function Basket() {
 
     try {
       await postOrder(input);
-      message.success('Your order placed successfully!'); 
+      toast.success('Order placed successfully!'); // Show success message using react-hot-toast
       emptyBasket();
       onClose();
     } catch (error) {
