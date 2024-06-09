@@ -1,14 +1,26 @@
 import { useRef, useState } from "react";
 import { IoIosCloseCircle } from "react-icons/io";
 import { useBasket } from "../../contexts/BasketContext.jsx";
-import { FormControl, FormLabel, Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay, Textarea, useDisclosure } from "@chakra-ui/react";
+import {
+  FormControl,
+  FormLabel,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalOverlay,
+  Textarea,
+  Input,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { postOrder } from "../../api.js";
-import { Button } from "antd";
-import styles from './Basket.module.css'
+import styles from './Basket.module.css';
 
 function Basket() {
   const { items, removeFromBasket, emptyBasket } = useBasket();
   const [address, setAddress] = useState(''); 
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = useRef(null);
 
@@ -18,9 +30,11 @@ function Basket() {
     const itemIds = items.map((item) => item._id);
     const input = {
       address,
-      items: JSON.stringify(itemIds),
+      items: itemIds,
+      firstName,
+      lastName,
     };
-  
+
     try {
       await postOrder(input);
       emptyBasket();
@@ -74,9 +88,9 @@ function Basket() {
                 <p className={styles.cartItemAmount}>ITEMS {items.length}</p>
                 <p className={styles.totalAmountText}>Total: {total}$</p>
               </div>
-              <button className={styles.buyButton} onClick={onOpen}>Buy</button>
             </div>
-            <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose}>
+            <button className={styles.buyButton} onClick={onOpen}>Buy</button>
+            <Modal initialFocusRef={initialRef} isOpen={isOpen} onClose={onClose} isCentered>
               <ModalOverlay />
               <ModalContent>
                 <ModalBody pb={6}>
@@ -89,12 +103,28 @@ function Basket() {
                       onChange={(e) => setAddress(e.target.value)}
                     />
                   </FormControl>
+                  <FormControl mt={4}>
+                    <FormLabel>First Name</FormLabel>
+                    <Input
+                      placeholder="First Name"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                    />
+                  </FormControl>
+                  <FormControl mt={4}>
+                    <FormLabel>Last Name</FormLabel>
+                    <Input
+                      placeholder="Last Name"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                    />
+                  </FormControl>
                 </ModalBody>
                 <ModalFooter className={styles.modalFooter}>
-                  <Button onClick={handleSubmitForm} className={styles.saveButton}>
+                  <button onClick={handleSubmitForm} className={styles.saveButton}>
                     Save
-                  </Button>
-                  <Button onClick={onClose} className={styles.cancelButton}>Cancel</Button>
+                  </button>
+                  <button onClick={onClose} className={styles.cancelButton}>Cancel</button>
                 </ModalFooter>
               </ModalContent>
             </Modal>
@@ -106,4 +136,3 @@ function Basket() {
 }
 
 export default Basket;
-

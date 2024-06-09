@@ -87,8 +87,8 @@
 .cartTotal {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     padding: 10px 20px;
+    height: 298px;
 }
 
 .cartSummary {
@@ -105,7 +105,7 @@
 
 .buyButton {
     width: 100%;
-    height: 60px;
+    height: 100px;
     font-size: 22px;
     background-color: #B9B9B9;
 }
@@ -121,14 +121,17 @@
 
 .saveButton, .cancelButton {
     border: #000 0.5px solid;
+    border-radius: 5px;
+    padding: 4px 8px;
 }
 
 .saveButton:hover {
-    border: #008311;
+    border: #008311 0.5px solid;
     color: #008311;
 }
 
 .cancelButton:hover {
-    border: #ff2020;
+    border: #ff2020 0.5px solid;
     color: #ff2020;
 }
+

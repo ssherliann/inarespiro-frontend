@@ -4,7 +4,7 @@ axios.interceptors.request.use(
   function (config) {
     const { origin } = new URL(config.url);
 
-    const allowedOrigins = ['https://inarespiro.onrender.com'];
+    const allowedOrigins = ['*'];
     const token = localStorage.getItem("access-token");
 
     if (allowedOrigins.includes(origin)) {
@@ -100,8 +100,6 @@ const getToken = () => {
 
 export const postOrder = async (input) => {
   const token = getToken();
-  console.log("Token:", token);
-  console.log("Endpoint:", process.env.REACT_APP_BASE_ENDPOINT);
 
   if (!token) {
     console.error("Token is missing");
@@ -133,8 +131,6 @@ export const postOrder = async (input) => {
 
 export const fetchOrders = async () => {
   const token = getToken();
-  console.log("Token:", token);
-  console.log("Endpoint:", process.env.REACT_APP_BASE_ENDPOINT);
 
   if (!token) {
     console.error("Token is missing");
