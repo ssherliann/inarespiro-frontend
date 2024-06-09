@@ -123,16 +123,6 @@ export const postOrder = async (input) => {
 export const fetchOrders = async () => {
   const token = getToken();
 
-  if (!token) {
-    console.error("Token is missing");
-    return;
-  }
-
-  if (!process.env.REACT_APP_BASE_ENDPOINT) {
-    console.error("Base endpoint is missing");
-    return;
-  }
-
   try {
     const { data } = await axios.get(
       `${process.env.REACT_APP_BASE_ENDPOINT}/order`,
@@ -148,7 +138,6 @@ export const fetchOrders = async () => {
     console.log("Error:", e.response ? e.response.data : e.message);
   }
 };
-
 
 export const deleteProduct = async (product_id) => {
   const { data } = await axios.delete(
