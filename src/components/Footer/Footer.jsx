@@ -9,8 +9,8 @@ export default function Footer() {
                     <Link to="/">inarespiro</Link>
                 </div>
                 <ul className={styles.social}>
-                    <Link to='/https://www.instagram.com/ssherliann?igsh=OHY3YXR4bnZlODVu&utm_source=qr'>INSTAGRAM</Link>
-                    <Link to='/https://www.facebook.com/profile.php?id=100017152063799'>FACEBOOK</Link>
+                    <Link to='https://www.instagram.com/ssherliann?igsh=OHY3YXR4bnZlODVu&utm_source=qr'>INSTAGRAM</Link>
+                    <Link to='https://www.facebook.com/profile.php?id=100017152063799'>FACEBOOK</Link>
                 </ul>
                 <ul className={styles.menu}>
                     <li>
