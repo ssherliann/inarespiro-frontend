@@ -91,10 +91,10 @@ function Basket() {
                   </FormControl>
                 </ModalBody>
                 <ModalFooter className={styles.modalFooter}>
-                  <Button onClick={handleSubmitForm} className={styles.saveButton}>
+                  <button onClick={handleSubmitForm} className={styles.saveButton}>
                     Save
-                  </Button>
-                  <Button onClick={onClose} className={styles.cancelButton}>Cancel</Button>
+                  </button>
+                  <button onClick={onClose} className={styles.cancelButton}>Cancel</button>
                 </ModalFooter>
               </ModalContent>
             </Modal>

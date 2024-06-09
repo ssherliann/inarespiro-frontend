@@ -118,10 +118,19 @@
     gap: 10px;
 }
 
+.saveButton, .cancelButton {
+    border: #000 0.5px solid;
+    width: 10px;
+    background-color: #fff;
+    color: #000;
+}
+
 .saveButton:hover {
     border: #008311;
+    color: #008311;
 }
 
 .cancelButton:hover {
     border: #ff2020;
+    color: #ff2020;
 }
