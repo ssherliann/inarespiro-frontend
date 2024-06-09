@@ -28,29 +28,32 @@ export default function Orders() {
       </nav>
       <div className={styles.ordersTable}>
         <h1 className={styles.title}>Orders</h1>
-        <Table variant="simple">
+        {data.length === 0 ? (
           <TableCaption>No orders</TableCaption>
-          <Thead>
-            <Tr>
-              <Th>Users</Th>
-              <Th>Address</Th>
-              <Th>Items</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            {data && data.map((item) => (
-              <Tr key={item._id}>
-                {item.user === null ? (
-                  <Td>No Name</Td>
-                ) : (
-                  <Td>{item.user.email}</Td>
-                )}
-                <Td>{item.address}</Td>
-                <Td isNumeric>{item.items.length}</Td>
+        ) : (
+          <Table variant="simple">
+            <Thead>
+              <Tr>
+                <Th>Users</Th>
+                <Th>Address</Th>
+                <Th>Items</Th>
               </Tr>
-            ))}
-          </Tbody>
-        </Table>
+            </Thead>
+            <Tbody>
+              {data.map((item) => (
+                <Tr key={item._id}>
+                  {item.user === null ? (
+                    <Td>No Name</Td>
+                  ) : (
+                    <Td>{item.user.email}</Td>
+                  )}
+                  <Td>{item.address}</Td>
+                  <Td isNumeric>{item.items.length}</Td>
+                </Tr>
+              ))}
+            </Tbody>
+          </Table>
+        )}
       </div>
     </div>
   );
