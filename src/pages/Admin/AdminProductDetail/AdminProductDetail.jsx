@@ -111,6 +111,8 @@ export default function AdminProductDetail() {
                         <option value="Rings">Rings</option>
                         <option value="Necklaces">Necklaces</option>
                         <option value="Bracelets">Bracelets</option>
+                        <option value="Chains">Chains</option>
+                        <option value="Earrings">Earrings</option>
                       </Select>
                     </FormControl>
                     <FormControl mt={4}>
