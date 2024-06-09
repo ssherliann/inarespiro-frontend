@@ -101,23 +101,12 @@ const getToken = () => {
 export const postOrder = async (input) => {
   const token = getToken();
 
-  if (!token) {
-    console.error("Token is missing");
-    return;
-  }
-
-  if (!process.env.REACT_APP_BASE_ENDPOINT) {
-    console.error("Base endpoint is missing");
-    return;
-  }
-
   try {
     const { data } = await axios.post(
       `${process.env.REACT_APP_BASE_ENDPOINT}/order`,
       input,
       {
         headers: {
-          "Access-Control-Allow-Origin":"https://inarespiro.onrender.com",
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
         },
