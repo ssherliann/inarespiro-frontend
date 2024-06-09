@@ -12,6 +12,7 @@ import {
   Textarea,
   Input,
   useDisclosure,
+  message
 } from "@chakra-ui/react";
 import { postOrder } from "../../api.js";
 import styles from './Basket.module.css';
@@ -37,6 +38,7 @@ function Basket() {
 
     try {
       await postOrder(input);
+      message.success('Your order placed successfully!'); 
       emptyBasket();
       onClose();
     } catch (error) {
