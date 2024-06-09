@@ -120,9 +120,6 @@
 
 .saveButton, .cancelButton {
     border: #000 0.5px solid;
-    width: 10px;
-    background-color: #fff;
-    color: #000;
 }
 
 .saveButton:hover {
